@@ -1,0 +1,5 @@
+float32 pulleyRadius
+float32 motorAccuracy
+int32 motorAccuracyDivider
+int32 dutyCycle
+int32 linVelMotorMast

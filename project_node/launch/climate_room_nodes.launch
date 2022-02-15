@@ -1,0 +1,4 @@
+<launch>
+	<node name="motor_mast_node" pkg="project_node" type="motor_mast_node" output="screen"  />
+	<node name="sensors_node" pkg="project_node" type="sensors_node" output="screen" />
+</launch>

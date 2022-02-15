@@ -1,0 +1,3 @@
+uint8 restDelay
+uint16 measureDelay
+float32 periodDelay
