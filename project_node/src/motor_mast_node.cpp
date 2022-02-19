@@ -22,7 +22,7 @@
 #define CLOCK_NOW std::chrono::high_resolution_clock::now()
 #define MY_PI				3.14159
 
-#define DEBUGGING
+//#define DEBUGGING
 #ifndef DEBUGGING
 	#define RPI_MOTOR_CONTROLLER_CW 	17 // Broadcom 
 	#define RPI_MOTOR_CONTROLLER_CCW 	27 // Broadcom
@@ -341,6 +341,7 @@ void paramCallback(const custom_msgs::Parameters::ConstPtr& msg){
  * @param Message lu sur le topic heights_list et qui contient la liste des hauteurs à atteindre
 */
 void heightListCallback(const custom_msgs::Heights::ConstPtr& msg){
+	heights.heightList.clear();
 	heights.heightList = msg->heightList;
 	
 	ROS_INFO("[ INFO ] : Hauteurs a atteindre");
@@ -358,7 +359,7 @@ void raspiGoCallback(const std_msgs::Bool::ConstPtr& msg){
 		if(count == 0){
 			manageGPIO();
 			
-			if(bringDownSensors()) raspi_go = true;
+			if(bringDownSensors(period_ON, period_OFF)) raspi_go = true;
 			else ROS_INFO("[ ERROR ] : Descente des capteurs impossible");
 			
 			terminateGPIO();
